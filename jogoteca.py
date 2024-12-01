@@ -118,7 +118,9 @@ def autenticar():
             flash(usuario.nickname + ' logado com sucesso')
 
             # apos as conferencias, a pagina rediciona para a proxima pagina que estava configurada para a variavel 'proxima', conhecinha por 'query string'
-            proxima_pagina = request.form['proxima']
+            # caso nao seja passado nenhum parametro de URL, entao seja redirecionado para a pagina principal
+            proxima_pagina = "" if request.form['proxima'] == "None" else request.form['proxima']
+            print(proxima_pagina)
             return redirect('/' + proxima_pagina)
 
         else:
